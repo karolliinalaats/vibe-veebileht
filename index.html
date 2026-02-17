@@ -3,111 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Mullimäng</title>
+    <title>Vibe Veebileht</title>
     <style>
         body {
-            margin: 0;
-            overflow: hidden; /* Et mullid ekraanilt välja ei läheks */
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* Sinu lemmik taustavärv: oranžist lillaks */
+            background: linear-gradient(135deg, #fdbb2d 0%, #b21f1f 50%, #1a2a6c 100%);
             color: white;
         }
-
-        #score-board {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            z-index: 10;
-        }
-
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.1s;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: move linear infinite;
-        }
-
-        .bubble:active {
-            transform: scale(0.5);
-        }
-
-        @keyframes move {
-            from { transform: translateY(100vh); }
-            to { transform: translateY(-100px); }
-        }
-
         .card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
+            backdrop-filter: blur(15px); /* Tugevam klaasiefekt */
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            z-index: 5;
-            pointer-events: none; /* Et mullid saaks kasti taga ka vajutada */
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 450px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        button {
+            background: white;
+            border: none;
+            color: #b21f1f;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #fdbb2d;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-    <div id="score-board">Punktid: <span id="score">0</span></div>
-
     <div class="card">
-        <h1>Mullimäng 🫧</h1>
-        <p>Püüdke mullid kinni! See mäng jookseb AWS S3 serveris.</p>
+        <h1>Vibe Check ✅</h1>
+        <p>See leht deploiti automaatselt <strong>GitHub Actions</strong> abil otse <strong>AWS S3</strong>-sse.</p>
+        <p>Arendatud professionaalses <strong>VS Code</strong> keskkonnas.</p>
+        <button onclick="alert('Automaatika töötab suurepäraselt!')">Vajuta siia</button>
     </div>
-
-    <script>
-        let score = 0;
-        const scoreElement = document.getElementById('score');
-
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-
-            // Juhuslik suurus ja asukoht
-            const size = Math.random() * 60 + 20 + 'px';
-            bubble.style.width = size;
-            bubble.style.height = size;
-            bubble.style.left = Math.random() * 100 + 'vw';
-            
-            // Juhuslik värv
-            const colors = ['#FF416C', '#FF4B2B', '#1fa2ff', '#12d8fa', '#a6ffcb', '#fdbb2d'];
-            bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
-            bubble.style.opacity = '0.6';
-
-            // Juhuslik kiirus
-            const duration = Math.random() * 3 + 2 + 's';
-            bubble.style.animationDuration = duration;
-
-            // Vajutamise funktsioon
-            bubble.onclick = () => {
-                score++;
-                scoreElement.innerText = score;
-                bubble.remove(); // Mull kaob vajutamisel
-            };
-
-            document.body.appendChild(bubble);
-
-            // Eemalda mull, kui see ekraanilt välja jõuab
-            setTimeout(() => {
-                if (bubble.parentElement) bubble.remove();
-            }, 5000);
-        }
-
-        // Tekita uus mull iga 500ms järel
-        setInterval(createBubble, 500);
-    </script>
 </body>
 </html>
