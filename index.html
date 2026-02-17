@@ -2,18 +2,52 @@
 <html lang="et">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vibe Veebileht</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f0f0f0; padding-top: 50px; }
-        .card { background: white; padding: 20px; border-radius: 10px; display: inline-block; shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Lahe värviüleminek */
+            color: white;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); /* Klaasi efekt */
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 400px;
+        }
+        button {
+            background: #ff4b2b;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Minu S3 Veebileht</h1>
-        <p>See leht liigub GitHubist otse Amazon S3 serverisse!</p>
-        <h2>See muudatus tehti GitHub Dev IDE-s!</h2>
+        <h1>Vibe Check ✅</h1>
+        <p>See leht deploiti automaatselt <strong>GitHub Actions</strong> abil otse <strong>AWS S3</strong>-sse.</p>
+        <p>Muudatus tehtud GitHub Dev (VS Code) IDE-s.</p>
+        <button onclick="alert('Automaatika töötab!')">Vajuta siia</button>
     </div>
 </body>
 </html>
- 
