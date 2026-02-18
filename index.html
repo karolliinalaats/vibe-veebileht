@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Veebileht</title>
+    <title>DVD Vibe Check</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -12,29 +12,35 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            /* Sinu lemmik taustavärv: oranžist lillaks */
             background: linear-gradient(135deg, #fdbb2d 0%, #b21f1f 50%, #1a2a6c 100%);
             color: white;
+            overflow: hidden; /* Et logo ei tekitaks kerimisribasid */
         }
+
+        /* DVD Logo stiil */
+        #dvd-logo {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            z-index: 1;
+            filter: brightness(0) invert(1); /* Teeme alguses valgeks */
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px); /* Tugevam klaasiefekt */
+            backdrop-filter: blur(15px);
             padding: 3rem;
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             text-align: center;
             border: 1px solid rgba(255,255,255,0.3);
             max-width: 450px;
+            z-index: 10; /* Et kaart oleks logo ees */
+            pointer-events: auto;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        
         button {
             background: white;
             border: none;
@@ -45,23 +51,57 @@
             font-size: 1rem;
             font-weight: bold;
             margin-top: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            background: #fdbb2d;
-            color: white;
+            transition: 0.3s;
         }
     </style>
 </head>
 <body>
+
+    <svg id="dvd-logo" viewBox="0 0 512 231" xmlns="http://www.w3.org/2000/svg">
+        <path d="M129.2 133.5c-30.8 0-55.8-24.1-55.8-53.7 0-29.6 25-53.7 55.8-53.7s55.8 24.1 55.8 53.7c0 29.6-25 53.7-55.8 53.7m382.8-53.7c0 53.7-44.8 97.2-100 97.2s-100-43.5-100-97.2 44.8-97.2 100-97.2 100 43.5 100 97.2m-100-53.7c-30.8 0-55.8 24.1-55.8 53.7 0 29.6 25 53.7 55.8 53.7s55.8-24.1 55.8-53.7c0-29.6-25-53.7-55.8-53.7M246.5 26.1l-22.1 63.8-22.1-63.8h-48l45.2 125.7h49.8L294.5 26.1h-48zM0 26.1v125.7h80.7c44.6 0 80.7-34.1 80.7-76.1S125.3 26.1 80.7 26.1H0zm80.7 97.2H36.3V54.6h44.4c25.4 0 46 19.5 46 43.5s-20.6 45.2-46 45.2zM256 185.3c-70.7 0-128 10.2-128 22.8s57.3 22.8 128 22.8 128-10.2 128-22.8-57.3-22.8-128-22.8z"/>
+    </svg>
+
     <div class="card">
-        <h1>Vibe Check ✅</h1>
-        <p>See leht deploiti automaatselt <strong>GitHub Actions</strong> abil otse <strong>AWS S3</strong>-sse.</p>
-        <p>Arendatud professionaalses <strong>VS Code</strong> keskkonnas.</p>
-        <button onclick="alert('Automaatika töötab suurepäraselt!')">Vajuta siia</button>
+        <h1>DVD Vibe ✅</h1>
+        <p>Kas see logo tabab kunagi nurka?</p>
+        <p>See leht elab <strong>AWS S3</strong>-s ja lendab ringi.</p>
+        <button onclick="alert('Oota veel, äkki nüüd tabab nurka!')">Vaata ja oota</button>
     </div>
+
+    <script>
+        const logo = document.getElementById('dvd-logo');
+        let x = Math.random() * (window.innerWidth - 150);
+        let y = Math.random() * (window.innerHeight - 70);
+        let xSpeed = 2;
+        let ySpeed = 2;
+
+        function update() {
+            x += xSpeed;
+            y += ySpeed;
+
+            // Põrkumine seintelt
+            if (x + 150 >= window.innerWidth || x <= 0) {
+                xSpeed *= -1;
+                changeColor();
+            }
+            if (y + 70 >= window.innerHeight || y <= 0) {
+                ySpeed *= -1;
+                changeColor();
+            }
+
+            logo.style.left = x + 'px';
+            logo.style.top = y + 'px';
+
+            requestAnimationFrame(update);
+        }
+
+        function changeColor() {
+            const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#ffffff'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            logo.style.fill = randomColor;
+        }
+
+        update();
+    </script>
 </body>
 </html>
