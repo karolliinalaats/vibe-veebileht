@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DVD Vibe Check</title>
+    <title>Õige DVD Vibe</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,16 +14,13 @@
             margin: 0;
             background: linear-gradient(135deg, #fdbb2d 0%, #b21f1f 50%, #1a2a6c 100%);
             color: white;
-            overflow: hidden; /* Et logo ei tekitaks kerimisribasid */
+            overflow: hidden;
         }
 
-        /* DVD Logo stiil */
         #dvd-logo {
             position: absolute;
-            width: 150px;
-            height: auto;
+            width: 180px; /* Natuke suurem, et tekst oleks loetav */
             z-index: 1;
-            filter: brightness(0) invert(1); /* Teeme alguses valgeks */
         }
 
         .card {
@@ -35,12 +32,9 @@
             text-align: center;
             border: 1px solid rgba(255,255,255,0.3);
             max-width: 450px;
-            z-index: 10; /* Et kaart oleks logo ees */
-            pointer-events: auto;
+            z-index: 10;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        
         button {
             background: white;
             border: none;
@@ -48,57 +42,51 @@
             padding: 12px 30px;
             border-radius: 50px;
             cursor: pointer;
-            font-size: 1rem;
             font-weight: bold;
             margin-top: 25px;
-            transition: 0.3s;
         }
     </style>
 </head>
 <body>
 
-    <svg id="dvd-logo" viewBox="0 0 512 231" xmlns="http://www.w3.org/2000/svg">
-        <path d="M129.2 133.5c-30.8 0-55.8-24.1-55.8-53.7 0-29.6 25-53.7 55.8-53.7s55.8 24.1 55.8 53.7c0 29.6-25 53.7-55.8 53.7m382.8-53.7c0 53.7-44.8 97.2-100 97.2s-100-43.5-100-97.2 44.8-97.2 100-97.2 100 43.5 100 97.2m-100-53.7c-30.8 0-55.8 24.1-55.8 53.7 0 29.6 25 53.7 55.8 53.7s55.8-24.1 55.8-53.7c0-29.6-25-53.7-55.8-53.7M246.5 26.1l-22.1 63.8-22.1-63.8h-48l45.2 125.7h49.8L294.5 26.1h-48zM0 26.1v125.7h80.7c44.6 0 80.7-34.1 80.7-76.1S125.3 26.1 80.7 26.1H0zm80.7 97.2H36.3V54.6h44.4c25.4 0 46 19.5 46 43.5s-20.6 45.2-46 45.2zM256 185.3c-70.7 0-128 10.2-128 22.8s57.3 22.8 128 22.8 128-10.2 128-22.8-57.3-22.8-128-22.8z"/>
+    <svg id="dvd-logo" viewBox="0 0 300 132" xmlns="http://www.w3.org/2000/svg" fill="white">
+        <path d="M41.4,34.1c-15.3,0-25.5,10.6-25.5,25.2s10.2,25.2,25.5,25.2s25.5-10.6,25.5-25.2S56.7,34.1,41.4,34.1z M41.4,75.3 c-9.5,0-15-7.1-15-16s5.6-16,15-16s15,7.1,15,16S50.9,75.3,41.4,75.3z M107.4,34.1H88.7l-9.1,28.7l-9.1-28.7H51.8l18.5,50.1h18.6 L107.4,34.1z M157.8,34.1h-24.8c-15.3,0-25.5,10.6-25.5,25.2s10.2,25.2,25.5,25.2h24.8V34.1z M133,75.3c-9.5,0-15-7.1-15-16 s5.6-16,15-16h8.8v32H133z M165.6,99.2c-31.5,0-57,4.5-57,10.1s25.5,10.1,57,10.1s57-4.5,57-10.1S197.1,99.2,165.6,99.2z M165.6,115.1 c-23,0-41.6-2.6-41.6-5.8s18.6-5.8,41.6-5.8s41.6,2.6,41.6,5.8S188.6,115.1,165.6,115.1z M211.8,92h-5.9l-2.4-6.4h-10.3l-2.4,6.4h-5.9 l10.1-25.7h6.8L211.8,92z M200.7,81.1l-2.9-7.9l-2.9,7.9H200.7z M228.6,66.3h-10.1V92h5.7V81.7h4.4l4.5,10.3h6.3l-5.1-11.2 c2.8-1.1,4.4-3.4,4.4-6.3C238.7,69.5,234.3,66.3,228.6,66.3z M228.2,77.3h-4.3v-6.5h4.3c2.4,0,3.9,1.2,3.9,3.2 C232.1,76.1,230.6,77.3,228.2,77.3z M253.2,66.3h-5.7V92h5.7V66.3z M279,66.3h-11.2c-6.8,0-11.4,4.7-11.4,11.2c0,6.5,4.6,11.2,11.4,11.2 H279c6.8,0,11.4-4.7,11.4-11.2C290.4,71,285.8,66.3,279,66.3z M279,84.6h-10.6c-4.2,0-6.7-2.6-6.7-7.1s2.5-7.1,6.7-7.1H279 c4.2,0,6.7,2.6,6.7,7.1S283.2,84.6,279,84.6z"/>
     </svg>
 
     <div class="card">
         <h1>DVD Vibe ✅</h1>
-        <p>Kas see logo tabab kunagi nurka?</p>
-        <p>See leht elab <strong>AWS S3</strong>-s ja lendab ringi.</p>
-        <button onclick="alert('Oota veel, äkki nüüd tabab nurka!')">Vaata ja oota</button>
+        <p>See on nüüd see õige "DVD Video" logo.</p>
+        <button onclick="alert('Logo on nüüd õige!')">Vibe Check</button>
     </div>
 
     <script>
         const logo = document.getElementById('dvd-logo');
-        let x = Math.random() * (window.innerWidth - 150);
-        let y = Math.random() * (window.innerHeight - 70);
-        let xSpeed = 2;
-        let ySpeed = 2;
+        let x = Math.random() * (window.innerWidth - 180);
+        let y = Math.random() * (window.innerHeight - 80);
+        let xSpeed = 3;
+        let ySpeed = 3;
 
         function update() {
             x += xSpeed;
             y += ySpeed;
 
-            // Põrkumine seintelt
-            if (x + 150 >= window.innerWidth || x <= 0) {
+            if (x + 180 >= window.innerWidth || x <= 0) {
                 xSpeed *= -1;
                 changeColor();
             }
-            if (y + 70 >= window.innerHeight || y <= 0) {
+            if (y + 80 >= window.innerHeight || y <= 0) {
                 ySpeed *= -1;
                 changeColor();
             }
 
             logo.style.left = x + 'px';
             logo.style.top = y + 'px';
-
             requestAnimationFrame(update);
         }
 
         function changeColor() {
-            const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#ffffff'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            logo.style.fill = randomColor;
+            const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#0000ff'];
+            logo.style.fill = colors[Math.floor(Math.random() * colors.length)];
         }
 
         update();
