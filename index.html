@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Õige DVD Vibe</title>
+    <title>Lõpuks Õige DVD Vibe</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -17,10 +17,13 @@
             overflow: hidden;
         }
 
+        /* See on meie DVD logo seadistus */
         #dvd-logo {
             position: absolute;
-            width: 180px; /* Natuke suurem, et tekst oleks loetav */
+            width: 200px; /* Suurus, mis tundub õige */
             z-index: 1;
+            /* Filter muudab algse musta logo valgeks */
+            filter: brightness(0) invert(1);
         }
 
         .card {
@@ -49,32 +52,31 @@
 </head>
 <body>
 
-    <svg id="dvd-logo" viewBox="0 0 300 132" xmlns="http://www.w3.org/2000/svg" fill="white">
-        <path d="M41.4,34.1c-15.3,0-25.5,10.6-25.5,25.2s10.2,25.2,25.5,25.2s25.5-10.6,25.5-25.2S56.7,34.1,41.4,34.1z M41.4,75.3 c-9.5,0-15-7.1-15-16s5.6-16,15-16s15,7.1,15,16S50.9,75.3,41.4,75.3z M107.4,34.1H88.7l-9.1,28.7l-9.1-28.7H51.8l18.5,50.1h18.6 L107.4,34.1z M157.8,34.1h-24.8c-15.3,0-25.5,10.6-25.5,25.2s10.2,25.2,25.5,25.2h24.8V34.1z M133,75.3c-9.5,0-15-7.1-15-16 s5.6-16,15-16h8.8v32H133z M165.6,99.2c-31.5,0-57,4.5-57,10.1s25.5,10.1,57,10.1s57-4.5,57-10.1S197.1,99.2,165.6,99.2z M165.6,115.1 c-23,0-41.6-2.6-41.6-5.8s18.6-5.8,41.6-5.8s41.6,2.6,41.6,5.8S188.6,115.1,165.6,115.1z M211.8,92h-5.9l-2.4-6.4h-10.3l-2.4,6.4h-5.9 l10.1-25.7h6.8L211.8,92z M200.7,81.1l-2.9-7.9l-2.9,7.9H200.7z M228.6,66.3h-10.1V92h5.7V81.7h4.4l4.5,10.3h6.3l-5.1-11.2 c2.8-1.1,4.4-3.4,4.4-6.3C238.7,69.5,234.3,66.3,228.6,66.3z M228.2,77.3h-4.3v-6.5h4.3c2.4,0,3.9,1.2,3.9,3.2 C232.1,76.1,230.6,77.3,228.2,77.3z M253.2,66.3h-5.7V92h5.7V66.3z M279,66.3h-11.2c-6.8,0-11.4,4.7-11.4,11.2c0,6.5,4.6,11.2,11.4,11.2 H279c6.8,0,11.4-4.7,11.4-11.2C290.4,71,285.8,66.3,279,66.3z M279,84.6h-10.6c-4.2,0-6.7-2.6-6.7-7.1s2.5-7.1,6.7-7.1H279 c4.2,0,6.7,2.6,6.7,7.1S283.2,84.6,279,84.6z"/>
-    </svg>
+    <img id="dvd-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg" alt="DVD Video">
 
     <div class="card">
         <h1>DVD Vibe ✅</h1>
-        <p>See on nüüd see õige "DVD Video" logo.</p>
-        <button onclick="alert('Logo on nüüd õige!')">Vibe Check</button>
+        <p>See on nüüd see **päris** logo, mis ekraanil põrkab.</p>
+        <button onclick="alert('Nüüd on logo õige!')">Vibe Check</button>
     </div>
 
     <script>
         const logo = document.getElementById('dvd-logo');
-        let x = Math.random() * (window.innerWidth - 180);
-        let y = Math.random() * (window.innerHeight - 80);
-        let xSpeed = 3;
-        let ySpeed = 3;
+        let x = Math.random() * (window.innerWidth - 200);
+        let y = Math.random() * (window.innerHeight - 100);
+        let xSpeed = 2.5;
+        let ySpeed = 2.5;
 
         function update() {
             x += xSpeed;
             y += ySpeed;
 
-            if (x + 180 >= window.innerWidth || x <= 0) {
+            // Kontrollime ekraani servasid
+            if (x + 200 >= window.innerWidth || x <= 0) {
                 xSpeed *= -1;
                 changeColor();
             }
-            if (y + 80 >= window.innerHeight || y <= 0) {
+            if (y + 100 >= window.innerHeight || y <= 0) {
                 ySpeed *= -1;
                 changeColor();
             }
@@ -84,9 +86,10 @@
             requestAnimationFrame(update);
         }
 
+        // Muudame logo värvi läbi CSS filtrite iga põrkega
         function changeColor() {
-            const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#0000ff'];
-            logo.style.fill = colors[Math.floor(Math.random() * colors.length)];
+            const hue = Math.floor(Math.random() * 360);
+            logo.style.filter = `brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(${hue}deg)`;
         }
 
         update();
